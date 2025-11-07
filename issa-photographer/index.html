@@ -3,569 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصور عيسى | استوديو التصوير الاحترافي</title>
-    <meta name="description" content="احجز جلسة تصوير احترافية الآن! تصوير سيارات فاخرة، عقارات، ومناسبات. جودة فائقة وأسعار مناسبة.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <title>المصور عيسى - الصفحة الرئيسية</title>
     <style>
-        .language-toggle {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 1001;
-            background: rgba(212, 175, 55, 0.9);
-            color: #0a0a0a;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-size: 1rem;
-            font-family: 'El Messiri', sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
         }
 
-        .language-toggle:hover {
-            background: #ffffff;
-            transform: scale(1.05);
+        header {
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #d4af37;
         }
 
-        .hidden-admin-btn {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            width: 5px;
-            height: 5px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1002;
-            opacity: 0.01;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .hidden-admin-btn:hover {
-            opacity: 0.02;
-        }
-
-        .slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 2;
-            width: 90%;
-            max-width: 900px;
-        }
-
-        .slide-title {
-            font-size: 4.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-            line-height: 1.1;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            font-family: 'El Messiri', sans-serif;
-        }
-
-        .slide-description {
-            font-size: 1.6rem;
-            margin-bottom: 3rem;
-            color: #e0e0e0;
-            font-weight: 400;
-            line-height: 1.8;
-            font-family: 'El Messiri', sans-serif;
-        }
-
-        .stats-section {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .stats-title {
+        .logo {
             color: #d4af37;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            font-weight: 800;
-            font-family: 'El Messiri', sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
         }
 
-        .cta-section {
-            padding: 8rem 2rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
         }
 
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
         }
 
-        .cta-badge {
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-button {
             background: #d4af37;
             color: #0a0a0a;
-            padding: 0.5rem 2rem;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            display: inline-block;
-            animation: pulse 2s infinite;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .cta-button:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        .services {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
         }
 
         .service-icon {
             font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .nav-cta {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .special-offer {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            animation: glow 2s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px #ff6b6b; }
-            50% { box-shadow: 0 0 20px #ff6b6b; }
+        footer {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid #d4af37;
         }
     </style>
 </head>
 <body>
-    <!-- زر مخفي للدخول إلى لوحة التحكم -->
-    <button class="hidden-admin-btn" id="hiddenAdminBtn" title="الدخول للوحة التحكم"></button>
-    <button id="languageToggle" class="language-toggle">🌐 EN</button>
-
     <header>
-        <nav class="navbar">
-            <div class="nav-logo">
-                <h2 data-lang="nav.title">المصور عيسى</h2>
-            </div>
-            <div class="nav-cta">
-                <span class="special-offer" data-lang="nav.special">عرض خاص للعملاء الجدد</span>
-                <a href="booking.html" class="cta-button">
-                    <i class="fas fa-calendar-check"></i>
-                    <span data-lang="nav.book">احجز الآن</span>
-                </a>
-            </div>
+        <nav>
+            <div class="logo">📸 المصور عيسى</div>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="gallery-cars.html">تصوير السيارات</a></li>
+                <li><a href="gallery-events.html">تصوير المناسبات</a></li>
+                <li><a href="gallery-real-estate.html">تصوير العقارات</a></li>
+                <li><a href="booking.html">حجز موعد</a></li>
+                <li><a href="dashboard.html">لوحة التحكم</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section class="hero-slider">
-            <div class="slides-container">
-                <div class="slide active" style="background-image: url('https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="hero.title">لحظات تخلد لأبد</h1>
-                        <p class="slide-description" data-lang="hero.subtitle">تصوير احترافي يعبر عن جمال سيارتك، عقارك، ومناسباتك الخاصة</p>
-                    </div>
-                </div>
-                
-                <div class="slide" style="background-image: url('https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="slide2.title">تصوير السيارات الفاخرة</h1>
-                        <p class="slide-description" data-lang="slide2.desc">أبدع في تجميد جمال سيارتك الفاخرة بإضاءة احترافية وخلفيات مذهلة</p>
-                    </div>
-                </div>
-                
-                <div class="slide" style="background-image: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="slide3.title">تصوير العقارات</h1>
-                        <p class="slide-description" data-lang="slide3.desc">زود قيمة عقارك بصور احترافية تجذب العملاء وتسرع عملية البيع</p>
-                    </div>
-                </div>
-                
-                <div class="slide" style="background-image: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="slide4.title">تصوير المناسبات</h1>
-                        <p class="slide-description" data-lang="slide4.desc">احفظ ذكريات مناسباتك السعيدة بجودة استثنائية تخلد اللحظات</p>
-                    </div>
-                </div>
-                
-                <div class="slide" style="background-image: url('https://images.pexels.com/photos/2127732/pexels-photo-2127732.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="slide5.title">إبداع بلا حدود</h1>
-                        <p class="slide-description" data-lang="slide5.desc">نقدم لك حلول تصوير إبداعية تناسب جميع احتياجاتك وأذواقك</p>
-                    </div>
-                </div>
-                
-                <div class="slide" style="background-image: url('https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg');">
-                    <div class="slide-content">
-                        <h1 class="slide-title" data-lang="slide6.title">جودة واحترافية</h1>
-                        <p class="slide-description" data-lang="slide6.desc">نلتزم بأعلى معايير الجودة لضمان رضاك التام عن النتائج</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-arrows">
-                <button class="arrow prev-arrow">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <button class="arrow next-arrow">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-            </div>
-
-            <div class="slider-nav">
-                <div class="slider-dot active" data-slide="0"></div>
-                <div class="slider-dot" data-slide="1"></div>
-                <div class="slider-dot" data-slide="2"></div>
-                <div class="slider-dot" data-slide="3"></div>
-                <div class="slider-dot" data-slide="4"></div>
-                <div class="slider-dot" data-slide="5"></div>
-            </div>
-        </section>
-
-        <section class="stats-section">
-            <h2 class="stats-title" data-lang="stats.title">أرقامنا تتحدث عنا</h2>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">+750</span>
-                    <span class="stat-text" data-lang="hero.projects">المشاريع</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">+350</span>
-                    <span class="stat-text" data-lang="hero.clients">العملاء</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">7</span>
-                    <span class="stat-text" data-lang="hero.experience">سنوات الخبرة</span>
-                </div>
-            </div>
-            
-            <div class="gallery-links">
-                <a href="gallery-cars.html" class="gallery-btn">
-                    <i class="fas fa-car"></i>
-                    <span data-lang="gallery.cars">تصوير السيارات</span>
-                </a>
-                <a href="gallery-real-estate.html" class="gallery-btn">
-                    <i class="fas fa-building"></i>
-                    <span data-lang="gallery.realestate">تصوير العقارات</span>
-                </a>
-                <a href="gallery-events.html" class="gallery-btn">
-                    <i class="fas fa-camera"></i>
-                    <span data-lang="gallery.events">تصوير المناسبات</span>
-                </a>
-            </div>
+        <section class="hero">
+            <h1>أبدع مع عدستي 📷</h1>
+            <p>تصوير إحترافي للسيارات، المناسبات، والعقارات بأفضل جودة</p>
+            <a href="booking.html" class="cta-button">احجز موعدك الآن</a>
         </section>
 
         <section class="services">
-            <h2 data-lang="services.title">لماذا تختارنا؟</h2>
+            <h2 style="text-align: center; margin-bottom: 3rem; color: #d4af37; font-size: 2.5rem;">خدماتنا</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h3 data-lang="services.cars">تصوير السيارات الفاخرة</h3>
-                    <p data-lang="services.cars.desc">تصوير احترافي يبرز جمال سيارتك الفاخرة في مواقع خلابة وإضاءة مثالية، مع معالجة احترافية تظهر كل التفاصيل الدقيقة.</p>
+                    <div class="service-icon">🚗</div>
+                    <h3>تصوير السيارات</h3>
+                    <p>تصوير إحترافي للسيارات بأحدث التقنيات والإضاءات</p>
+                    <a href="gallery-cars.html" style="color: #d4af37; text-decoration: none; margin-top: 1rem; display: inline-block;">عرض الأعمال</a>
                 </div>
+                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 data-lang="services.realestate">تصوير العقارات</h3>
-                    <p data-lang="services.realestate.desc">إبراز جمال وجاذبية عقارك بصور احترافية تزيد من قيمته وتسرع عملية البيع أو التأجير.</p>
+                    <div class="service-icon">🎉</div>
+                    <h3>تصوير المناسبات</h3>
+                    <p>توثيق جميل لأهم لحظاتك في الأفراح والمناسبات</p>
+                    <a href="gallery-events.html" style="color: #d4af37; text-decoration: none; margin-top: 1rem; display: inline-block;">عرض الأعمال</a>
                 </div>
+                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                    <h3 data-lang="services.events">تصوير المناسبات</h3>
-                    <p data-lang="services.events.desc">احفظ ذكريات مناسباتك السعيدة بأجمل الصور! نوثق لحظات فرحتك بجودة استثنائية.</p>
+                    <div class="service-icon">🏠</div>
+                    <h3>تصوير العقارات</h3>
+                    <p>تصوير مبدع يعكس جمال وجاذبية العقارات</p>
+                    <a href="gallery-real-estate.html" style="color: #d4af37; text-decoration: none; margin-top: 1rem; display: inline-block;">عرض الأعمال</a>
                 </div>
-            </div>
-        </section>
-
-        <section class="cta-section">
-            <div class="cta-badge" data-lang="cta.badge">عرض خاص 🔥</div>
-            <h2 data-lang="cta.title">لنبدأ مشروعك معاً</h2>
-            <p data-lang="cta.subtitle" style="color: #e0e0e0; font-size: 1.4rem; margin-bottom: 3rem; line-height: 1.8; max-width: 600px; margin-left: auto; margin-right: auto;">
-                احجز جلسة التصوير الخاصة بك الآن واحصل على <strong style="color: #d4af37;">خصم 15%</strong> على أول حجز. جودة احترافية بأسعار مناسبة للجميع.
-            </p>
-            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-                <a href="booking.html" class="cta-button" style="padding: 1.5rem 3rem; font-size: 1.3rem;">
-                    <i class="fas fa-gift"></i>
-                    <span data-lang="cta.book">احجز الآن ووفر 15%</span>
-                </a>
-                <a href="tel:+966537476606" class="cta-button" style="background: #2a2a2a; color: #d4af37; padding: 1.5rem 3rem; font-size: 1.3rem;">
-                    <i class="fas fa-phone"></i>
-                    <span data-lang="cta.call">اتصل بنا مباشرة</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="contact-section">
-            <h2 data-lang="contact.title">تواصل معنا</h2>
-            <p data-lang="contact.subtitle" style="color: #b0b0b0; font-size: 1.3rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                لديك استفسار أو تريد معرفة المزيد عن خدماتنا؟ نحن هنا لمساعدتك!
-            </p>
-            <div class="contact-methods">
-                <a href="https://wa.me/966537476606" class="contact-method" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span data-lang="contact.whatsapp">راسلنا على واتساب</span>
-                </a>
-                <a href="https://instagram.com/iiissa_7" class="contact-method" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                    <span data-lang="contact.instagram">تابعنا على إنستغرام</span>
-                </a>
             </div>
         </section>
     </main>
 
-    <footer class="signature">
-        <p data-lang="footer.copyright">© 2024 المصور عيسى - جميع الحقوق محفوظة | تصميم باحترافية لخدمتك</p>
+    <footer>
+        <p>© 2024 المصور عيسى - جميع الحقوق محفوظة</p>
+        <p>تواصل معنا: issaljadali@gmail.com</p>
     </footer>
-
-    <script>
-        class HeroSlider {
-            constructor() {
-                this.slides = document.querySelectorAll('.slide');
-                this.dots = document.querySelectorAll('.slider-dot');
-                this.prevBtn = document.querySelector('.prev-arrow');
-                this.nextBtn = document.querySelector('.next-arrow');
-                this.currentSlide = 0;
-                this.slideInterval = null;
-                this.touchStartX = 0;
-                this.touchEndX = 0;
-                
-                this.init();
-            }
-            
-            init() {
-                this.prevBtn.addEventListener('click', () => this.prevSlide());
-                this.nextBtn.addEventListener('click', () => this.nextSlide());
-                
-                this.dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => this.goToSlide(index));
-                });
-                
-                this.slides[0].addEventListener('touchstart', (e) => this.handleTouchStart(e));
-                this.slides[0].addEventListener('touchend', (e) => this.handleTouchEnd(e));
-                
-                this.startAutoSlide();
-                
-                this.slides[0].addEventListener('mouseenter', () => this.stopAutoSlide());
-                this.slides[0].addEventListener('mouseleave', () => this.startAutoSlide());
-            }
-            
-            showSlide(index) {
-                this.slides.forEach(slide => slide.classList.remove('active'));
-                this.dots.forEach(dot => dot.classList.remove('active'));
-                
-                this.slides[index].classList.add('active');
-                this.dots[index].classList.add('active');
-                this.currentSlide = index;
-            }
-            
-            nextSlide() {
-                let next = this.currentSlide + 1;
-                if (next >= this.slides.length) next = 0;
-                this.showSlide(next);
-            }
-            
-            prevSlide() {
-                let prev = this.currentSlide - 1;
-                if (prev < 0) prev = this.slides.length - 1;
-                this.showSlide(prev);
-            }
-            
-            goToSlide(index) {
-                this.showSlide(index);
-            }
-            
-            startAutoSlide() {
-                this.slideInterval = setInterval(() => {
-                    this.nextSlide();
-                }, 4000);
-            }
-            
-            stopAutoSlide() {
-                if (this.slideInterval) {
-                    clearInterval(this.slideInterval);
-                }
-            }
-            
-            handleTouchStart(e) {
-                this.touchStartX = e.changedTouches[0].screenX;
-                this.stopAutoSlide();
-            }
-            
-            handleTouchEnd(e) {
-                this.touchEndX = e.changedTouches[0].screenX;
-                this.handleSwipe();
-                this.startAutoSlide();
-            }
-            
-            handleSwipe() {
-                const swipeThreshold = 50;
-                const difference = this.touchStartX - this.touchEndX;
-                
-                if (Math.abs(difference) > swipeThreshold) {
-                    if (difference > 0) {
-                        this.nextSlide();
-                    } else {
-                        this.prevSlide();
-                    }
-                }
-            }
-        }
-
-        class LanguageManager {
-            constructor() {
-                this.currentLanguage = localStorage.getItem('issaLanguage') || 'ar';
-                this.translations = {
-                    ar: {
-                        'nav.title': 'المصور عيسى',
-                        'nav.special': 'عرض خاص للعملاء الجدد',
-                        'nav.book': 'احجز الآن',
-                        'hero.title': 'لحظات تخلد لأبد',
-                        'hero.subtitle': 'تصوير احترافي يعبر عن جمال سيارتك، عقارك، ومناسباتك الخاصة',
-                        'slide2.title': 'تصوير السيارات الفاخرة',
-                        'slide2.desc': 'أبدع في تجميد جمال سيارتك الفاخرة بإضاءة احترافية وخلفيات مذهلة',
-                        'slide3.title': 'تصوير العقارات',
-                        'slide3.desc': 'زود قيمة عقارك بصور احترافية تجذب العملاء وتسرع عملية البيع',
-                        'slide4.title': 'تصوير المناسبات',
-                        'slide4.desc': 'احفظ ذكريات مناسباتك السعيدة بجودة استثنائية تخلد اللحظات',
-                        'slide5.title': 'إبداع بلا حدود',
-                        'slide5.desc': 'نقدم لك حلول تصوير إبداعية تناسب جميع احتياجاتك وأذواقك',
-                        'slide6.title': 'جودة واحترافية',
-                        'slide6.desc': 'نلتزم بأعلى معايير الجودة لضمان رضاك التام عن النتائج',
-                        'stats.title': 'أرقامنا تتحدث عنا',
-                        'hero.projects': 'المشاريع',
-                        'hero.clients': 'العملاء',
-                        'hero.experience': 'سنوات الخبرة',
-                        'gallery.cars': 'تصوير السيارات',
-                        'gallery.realestate': 'تصوير العقارات',
-                        'gallery.events': 'تصوير المناسبات',
-                        'services.title': 'لماذا تختارنا؟',
-                        'services.cars': 'تصوير السيارات الفاخرة',
-                        'services.cars.desc': 'تصوير احترافي يبرز جمال سيارتك الفاخرة في مواقع خلابة وإضاءة مثالية، مع معالجة احترافية تظهر كل التفاصيل الدقيقة.',
-                        'services.realestate': 'تصوير العقارات',
-                        'services.realestate.desc': 'إبراز جمال وجاذبية عقارك بصور احترافية تزيد من قيمته وتسرع عملية البيع أو التأجير.',
-                        'services.events': 'تصوير المناسبات',
-                        'services.events.desc': 'احفظ ذكريات مناسباتك السعيدة بأجمل الصور! نوثق لحظات فرحتك بجودة استثنائية.',
-                        'cta.badge': 'عرض خاص 🔥',
-                        'cta.title': 'لنبدأ مشروعك معاً',
-                        'cta.subtitle': 'احجز جلسة التصوير الخاصة بك الآن واحصل على خصم 15% على أول حجز. جودة احترافية بأسعار مناسبة للجميع.',
-                        'cta.book': 'احجز الآن ووفر 15%',
-                        'cta.call': 'اتصل بنا مباشرة',
-                        'contact.title': 'تواصل معنا',
-                        'contact.subtitle': 'لديك استفسار أو تريد معرفة المزيد عن خدماتنا؟ نحن هنا لمساعدتك!',
-                        'contact.whatsapp': 'راسلنا على واتساب',
-                        'contact.instagram': 'تابعنا على إنستغرام',
-                        'footer.copyright': '© 2024 المصور عيسى - جميع الحقوق محفوظة | تصميم باحترافية لخدمتك'
-                    },
-                    en: {
-                        'nav.title': 'Photographer Issa',
-                        'nav.special': 'Special offer for new clients',
-                        'nav.book': 'Book Now',
-                        'hero.title': 'Moments Last Forever',
-                        'hero.subtitle': 'Professional photography that expresses the beauty of your car, property, and special occasions',
-                        'slide2.title': 'Luxury Car Photography',
-                        'slide2.desc': 'Showcase your luxury car in stunning locations with professional lighting',
-                        'slide3.title': 'Real Estate Photography',
-                        'slide3.desc': 'Enhance your property value with professional photos that attract buyers',
-                        'slide4.title': 'Event Photography',
-                        'slide4.desc': 'Preserve your special moments with exceptional quality photography',
-                        'slide5.title': 'Creative Solutions',
-                        'slide5.desc': 'We offer creative photography solutions tailored to your needs and tastes',
-                        'slide6.title': 'Quality & Professionalism',
-                        'slide6.desc': 'We commit to highest quality standards to ensure your complete satisfaction',
-                        'stats.title': 'Our Numbers Speak',
-                        'hero.projects': 'Projects',
-                        'hero.clients': 'Clients',
-                        'hero.experience': 'Years Experience',
-                        'gallery.cars': 'Car Photography',
-                        'gallery.realestate': 'Real Estate Photography',
-                        'gallery.events': 'Event Photography',
-                        'services.title': 'Why Choose Us?',
-                        'services.cars': 'Luxury Car Photography',
-                        'services.cars.desc': 'Professional photography that highlights your luxury car in stunning locations with perfect lighting.',
-                        'services.realestate': 'Real Estate Photography',
-                        'services.realestate.desc': 'Showcase your property beauty with professional photos that increase its value and speed up sales.',
-                        'services.events': 'Event Photography',
-                        'services.events.desc': 'Preserve your happy moments with beautiful photos! We document your joy with exceptional quality.',
-                        'cta.badge': 'Special Offer 🔥',
-                        'cta.title': 'Let\'s Start Your Project Together',
-                        'cta.subtitle': 'Book your photo session now and get 15% discount on first booking. Professional quality at affordable prices for everyone.',
-                        'cta.book': 'Book Now & Save 15%',
-                        'cta.call': 'Call Us Directly',
-                        'contact.title': 'Contact Us',
-                        'contact.subtitle': 'Have a question or want to know more about our services? We are here to help!',
-                        'contact.whatsapp': 'Message us on WhatsApp',
-                        'contact.instagram': 'Follow us on Instagram',
-                        'footer.copyright': '© 2024 Photographer Issa - All rights reserved | Professional design for your service'
-                    }
-                };
-                this.init();
-            }
-
-            init() {
-                this.loadLanguage();
-                document.getElementById('languageToggle').addEventListener('click', () => this.toggleLanguage());
-            }
-
-            loadLanguage() {
-                const elements = document.querySelectorAll('[data-lang]');
-                elements.forEach(element => {
-                    const key = element.getAttribute('data-lang');
-                    if (this.translations[this.currentLanguage][key]) {
-                        element.textContent = this.translations[this.currentLanguage][key];
-                    }
-                });
-
-                document.documentElement.dir = this.currentLanguage === 'ar' ? 'rtl' : 'ltr';
-                document.documentElement.lang = this.currentLanguage;
-                
-                document.getElementById('languageToggle').textContent = 
-                    this.currentLanguage === 'ar' ? '🌐 EN' : '🌐 AR';
-            }
-
-            toggleLanguage() {
-                this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
-                localStorage.setItem('issaLanguage', this.currentLanguage);
-                this.loadLanguage();
-            }
-        }
-
-        // زر الدخول المخفي للوحة التحكم
-        document.getElementById('hiddenAdminBtn').addEventListener('click', function() {
-            window.location.href = 'dashboard.html';
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            new HeroSlider();
-            new LanguageManager();
-        });
-    </script>
 </body>
 </html>
