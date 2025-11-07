@@ -491,7 +491,7 @@
                     `🔔 حجز جديد 🔔\n\nالاسم: ${booking.name}\nالهاتف: ${booking.phone}\n${booking.email ? `البريد: ${booking.email}\n` : ''}الخدمة: ${this.getServiceName(booking.service)}\nالميزانية: ${booking.budget} ر.س\nالتاريخ: ${booking.date}\n\nملاحظات: ${booking.notes || 'لا توجد ملاحظات'}` :
                     `🔔 New Booking 🔔\n\nName: ${booking.name}\nPhone: ${booking.phone}\n${booking.email ? `Email: ${booking.email}\n` : ''}Service: ${this.getServiceName(booking.service)}\nBudget: ${booking.budget} SAR\nDate: ${booking.date}\n\nNotes: ${booking.notes || 'No notes'}`;
 
-                const whatsappUrl = `https://wa.me/966537476606?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://wa.me/966537475606?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
             }
 
@@ -524,4 +524,5 @@
         });
     </script>
 </body>
+
 </html>
