@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="booking.title">احجز جلسة تصوير | المصور عيسى</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .booking-page {
+            padding-top: 120px;
+            min-height: 100vh;
+            background: #0a0a0a;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .booking-header h1 {
+            color: #d4af37;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .booking-header p {
+            color: #b0b0b0;
+            font-size: 1.3rem;
+        }
+
+        .booking-form {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .budget-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .budget-option {
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .budget-option:hover {
+            border-color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .budget-option.selected {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        .budget-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .budget-type {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #0a0a0a;
+            border: none;
+            padding: 1.5rem 3rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .back-btn-improved {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .back-btn-improved:hover {
+            background: #0a0a0a;
+            color: #d4af37;
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #d4af37;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content h3 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #b8941f;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                padding: 1rem;
+            }
+            
+            .booking-form {
+                padding: 2rem;
+            }
+            
+            .budget-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .booking-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="languageToggle" class="language-toggle">🌐 EN</button>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2 data-lang="nav.title">المصور عيسى</h2>
+            </div>
+            <div class="nav-cta">
+                <a href="index.html" class="cta-button">
+                    <i class="fas fa-home"></i>
+                    <span data-lang="nav.home">الرئيسية</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="booking-page">
+        <div class="booking-container">
+            <a href="index.html" class="back-btn-improved">
+                <i class="fas fa-arrow-right"></i>
+                <span data-lang="nav.home">العودة للرئيسية</span>
+            </a>
+
+            <div class="booking-header">
+                <h1 data-lang="booking.title">احجز جلسة تصوير</h1>
+                <p data-lang="booking.subtitle">املأ البيانات وسنتواصل معك في أقرب وقت</p>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label data-lang="booking.name">الاسم الكامل *</label>
+                    <input type="text" id="clientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.phone">رقم الهاتف *</label>
+                    <input type="tel" id="clientPhone" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.email">البريد الإلكتروني</label>
+                    <input type="email" id="clientEmail" placeholder="اختياري">
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.service">نوع الخدمة *</label>
+                    <select id="serviceType" required>
+                        <option value="" data-lang="booking.service.select">اختر نوع الخدمة</option>
+                        <option value="cars" data-lang="booking.service.cars">تصوير السيارات</option>
+                        <option value="realestate" data-lang="booking.service.realestate">تصوير العقارات</option>
+                        <option value="events" data-lang="booking.service.events">تصوير المناسبات</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.budget">الميزانية المتوقعة *</label>
+                    <div class="budget-options">
+                        <div class="budget-option" data-budget="500-1000">
+                            <div class="budget-amount">500 - 1,000 ر.س</div>
+                        </div>
+                        <div class="budget-option" data-budget="1000-2000">
+                            <div class="budget-amount">1,000 - 2,000 ر.س</div>
+                        </div>
+                        <div class="budget-option" data-budget="2000-5000">
+                            <div class="budget-amount">2,000 - 5,000 ر.س</div>
+                        </div>
+                        <div class="budget-option" data-budget="5000+">
+                            <div class="budget-amount">5,000+ ر.س</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="clientBudget" required>
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.date">التاريخ المفضل *</label>
+                    <input type="date" id="bookingDate" required min="<?php echo date('Y-m-d'); ?>">
+                </div>
+
+                <div class="form-group">
+                    <label data-lang="booking.notes">ملاحظات إضافية</label>
+                    <textarea id="bookingNotes" rows="4" placeholder="أخبرنا المزيد عن متطلباتك..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span data-lang="booking.submit">تأكيد الحجز</span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <div id="successModal" class="success-modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 data-lang="booking.success">تم استلام حجزك بنجاح!</h3>
+            <p data-lang="booking.success.message">سنقوم بالتواصل معك في أقرب وقت لتأكيد الموعد</p>
+            <button class="modal-close" onclick="document.getElementById('successModal').style.display='none'">
+                <span data-lang="booking.ok">حسناً</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        class BookingSystem {
+            constructor() {
+                this.currentLanguage = localStorage.getItem('issaLanguage') || 'ar';
+                this.translations = {
+                    ar: {
+                        'nav.title': 'المصور عيسى',
+                        'nav.home': 'الرئيسية',
+                        'booking.title': 'احجز جلسة تصوير',
+                        'booking.subtitle': 'املأ البيانات وسنتواصل معك في أقرب وقت',
+                        'booking.name': 'الاسم الكامل',
+                        'booking.phone': 'رقم الهاتف',
+                        'booking.email': 'البريد الإلكتروني',
+                        'booking.service': 'نوع الخدمة',
+                        'booking.service.select': 'اختر نوع الخدمة',
+                        'booking.service.cars': 'تصوير السيارات',
+                        'booking.service.realestate': 'تصوير العقارات',
+                        'booking.service.events': 'تصوير المناسبات',
+                        'booking.budget': 'الميزانية المتوقعة',
+                        'booking.date': 'التاريخ المفضل',
+                        'booking.notes': 'ملاحظات إضافية',
+                        'booking.submit': 'تأكيد الحجز',
+                        'booking.success': 'تم استلام حجزك بنجاح!',
+                        'booking.success.message': 'سنقوم بالتواصل معك في أقرب وقت لتأكيد الموعد',
+                        'booking.ok': 'حسناً'
+                    },
+                    en: {
+                        'nav.title': 'Photographer Issa',
+                        'nav.home': 'Home',
+                        'booking.title': 'Book a Photo Session',
+                        'booking.subtitle': 'Fill in the details and we will contact you soon',
+                        'booking.name': 'Full Name',
+                        'booking.phone': 'Phone Number',
+                        'booking.email': 'Email Address',
+                        'booking.service': 'Service Type',
+                        'booking.service.select': 'Select Service Type',
+                        'booking.service.cars': 'Car Photography',
+                        'booking.service.realestate': 'Real Estate Photography',
+                        'booking.service.events': 'Event Photography',
+                        'booking.budget': 'Expected Budget',
+                        'booking.date': 'Preferred Date',
+                        'booking.notes': 'Additional Notes',
+                        'booking.submit': 'Confirm Booking',
+                        'booking.success': 'Your booking has been received successfully!',
+                        'booking.success.message': 'We will contact you soon to confirm the appointment',
+                        'booking.ok': 'OK'
+                    }
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadLanguage();
+                this.setupEventListeners();
+                
+                const langBtn = document.getElementById('languageToggle');
+                if (langBtn) {
+                    langBtn.addEventListener('click', () => this.toggleLanguage());
+                }
+            }
+
+            loadLanguage() {
+                const elements = document.querySelectorAll('[data-lang]');
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-lang');
+                    if (this.translations[this.currentLanguage][key]) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT') {
+                            element.placeholder = this.translations[this.currentLanguage][key];
+                        } else {
+                            element.textContent = this.translations[this.currentLanguage][key];
+                        }
+                    }
+                });
+
+                document.documentElement.dir = this.currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = this.currentLanguage;
+                
+                document.getElementById('languageToggle').textContent = 
+                    this.currentLanguage === 'ar' ? '🌐 EN' : '🌐 AR';
+            }
+
+            toggleLanguage() {
+                this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('issaLanguage', this.currentLanguage);
+                this.loadLanguage();
+            }
+
+            setupEventListeners() {
+                const budgetOptions = document.querySelectorAll('.budget-option');
+                const budgetInput = document.getElementById('clientBudget');
+                
+                budgetOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        budgetOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        budgetInput.value = this.getAttribute('data-budget');
+                    });
+                });
+
+                const bookingForm = document.getElementById('bookingForm');
+                if (bookingForm) {
+                    bookingForm.addEventListener('submit', (e) => this.handleBooking(e));
+                }
+            }
+
+            handleBooking(e) {
+                e.preventDefault();
+                
+                const budgetInput = document.getElementById('clientBudget');
+                if (!budgetInput.value) {
+                    alert(this.currentLanguage === 'ar' ? 'يرجى اختيار الميزانية المتوقعة' : 'Please select expected budget');
+                    return;
+                }
+
+                const formData = {
+                    id: Date.now(),
+                    name: document.getElementById('clientName').value,
+                    phone: document.getElementById('clientPhone').value,
+                    email: document.getElementById('clientEmail').value || '',
+                    service: document.getElementById('serviceType').value,
+                    budget: budgetInput.value,
+                    date: document.getElementById('bookingDate').value,
+                    notes: document.getElementById('bookingNotes').value,
+                    status: 'pending',
+                    contacted: false,
+                    serious: true,
+                    createdAt: new Date().toISOString(),
+                    language: this.currentLanguage
+                };
+
+                this.saveBooking(formData);
+                this.sendNotification(formData);
+                this.showSuccessMessage();
+                this.resetForm();
+            }
+
+            saveBooking(booking) {
+                let bookings = JSON.parse(localStorage.getItem('issaBookings')) || [];
+                bookings.push(booking);
+                localStorage.setItem('issaBookings', JSON.stringify(bookings));
+            }
+
+            sendNotification(booking) {
+                const message = this.currentLanguage === 'ar' ?
+                    `🔔 حجز جديد 🔔\n\nالاسم: ${booking.name}\nالهاتف: ${booking.phone}\n${booking.email ? `البريد: ${booking.email}\n` : ''}الخدمة: ${this.getServiceName(booking.service)}\nالميزانية: ${booking.budget} ر.س\nالتاريخ: ${booking.date}\n\nملاحظات: ${booking.notes || 'لا توجد ملاحظات'}` :
+                    `🔔 New Booking 🔔\n\nName: ${booking.name}\nPhone: ${booking.phone}\n${booking.email ? `Email: ${booking.email}\n` : ''}Service: ${this.getServiceName(booking.service)}\nBudget: ${booking.budget} SAR\nDate: ${booking.date}\n\nNotes: ${booking.notes || 'No notes'}`;
+
+                const whatsappUrl = `https://wa.me/966537476606?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+
+            getServiceName(service) {
+                const services = {
+                    'cars': this.currentLanguage === 'ar' ? 'تصوير السيارات' : 'Car Photography',
+                    'realestate': this.currentLanguage === 'ar' ? 'تصوير العقارات' : 'Real Estate Photography',
+                    'events': this.currentLanguage === 'ar' ? 'تصوير المناسبات' : 'Event Photography'
+                };
+                return services[service] || service;
+            }
+
+            showSuccessMessage() {
+                const modal = document.getElementById('successModal');
+                if (modal) {
+                    modal.style.display = 'block';
+                }
+            }
+
+            resetForm() {
+                const form = document.getElementById('bookingForm');
+                if (form) form.reset();
+                document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('clientBudget').value = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new BookingSystem();
+        });
+    </script>
+</body>
+</html>

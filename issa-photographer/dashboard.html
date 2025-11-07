@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | المصور عيسى</title>
+    <style>
+        /* الأنماط تبقى كما هي */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .login-form {
+            background: #1a1a1a;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid #d4af37;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-form h2 {
+            color: #d4af37;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #b8941f;
+        }
+
+        .dashboard {
+            display: none;
+            padding: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #d4af37;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .filters {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #2a2a2a;
+            color: white;
+            border: 1px solid #3a3a3a;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #d4af37;
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        .bookings-table {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        th {
+            color: #d4af37;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .action-btn {
+            background: #2a2a2a;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 0.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contacted-btn {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .serious-btn {
+            background: #00aa00;
+            color: white;
+        }
+
+        .not-serious-btn {
+            background: #ff4444;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+        }
+
+        .status-pending { color: #ffa500; }
+        .status-contacted { color: #00ff00; }
+        .status-completed { color: #0088ff; }
+
+        .export-btn {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .export-btn:hover {
+            background: #b8941f;
+        }
+
+        .export-options {
+            background: #1a1a1a;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .export-option-btn {
+            background: #2a2a2a;
+            color: white;
+            border: 1px solid #3a3a3a;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .export-option-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    
+    <div class="login-screen" id="loginScreen">
+        <div class="login-form">
+            <h2>دخول لوحة التحكم</h2>
+            <input type="text" id="username" placeholder="اسم المستخدم">
+            <input type="password" id="password" placeholder="كلمة المرور">
+            <button class="login-btn" onclick="login()">دخول</button>
+        </div>
+    </div>
+
+    <div class="dashboard" id="dashboard">
+        <div class="dashboard-header">
+            <h1>لوحة تحكم الحجوزات</h1>
+            <a href="index.html" class="logout-btn">العودة للرئيسية</a>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalBookings">0</div>
+                <div>إجمالي الحجوزات</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingBookings">0</div>
+                <div>قيد الانتظار</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="contactedBookings">0</div>
+                <div>تم التواصل</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="seriousClients">0</div>
+                <div>عملاء جادين</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterBookings('all')">الكل</button>
+            <button class="filter-btn" onclick="filterBookings('pending')">قيد الانتظار</button>
+            <button class="filter-btn" onclick="filterBookings('contacted')">تم التواصل</button>
+            <button class="filter-btn" onclick="filterBookings('serious')">جادين</button>
+            <button class="filter-btn" onclick="filterBookings('notSerious')">غير جادين</button>
+        </div>
+
+        <div class="bookings-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>رقم الحجز</th>
+                        <th>الاسم</th>
+                        <th>الهاتف</th>
+                        <th>البريد</th>
+                        <th>الخدمة</th>
+                        <th>الميزانية</th>
+                        <th>التاريخ</th>
+                        <th>المدة</th>
+                        <th>الموقع</th>
+                        <th>الحالة</th>
+                        <th>طريقة الدفع</th>
+                        <th>ملاحظات</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsList">
+                </tbody>
+            </table>
+        </div>
+
+        <button class="export-btn" onclick="showExportOptions()">📥 تصدير البيانات</button>
+        
+        <div class="export-options" id="exportOptions" style="display: none;">
+            <button class="export-option-btn" onclick="exportData('csv')">CSV (لـ Excel)</button>
+            <button class="export-option-btn" onclick="exportData('txt')">TXT (أكثر توافقاً)</button>
+            <button class="export-option-btn" onclick="exportData('excel')">Excel مع إرشادات</button>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_CREDENTIALS = {
+            username: "issaj",
+            password: "730241&Oo"
+        };
+
+        function showNotification(message, duration = 3000) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, duration);
+        }
+
+        function showExportOptions() {
+            const options = document.getElementById('exportOptions');
+            options.style.display = options.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadDashboard();
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            }
+        }
+
+        let currentFilter = 'all';
+        let allBookings = [];
+
+        // تحميل البيانات الأولية من CSV المحسن
+        function loadInitialData() {
+            const initialData = [
+                {
+                    id: 1,
+                    name: "اختبار",
+                    phone: "+966505055050",
+                    email: "isskhsggtsg@gmail.com",
+                    service: "cars",
+                    budget: "غير محدد",
+                    date: "2025-11-05",
+                    duration: "3 ساعات",
+                    location: "الرياض",
+                    status: "قيد الانتظار",
+                    paymentMethod: "نقدي",
+                    notes: "لا توجد ملاحظات",
+                    createdAt: "2025-09-22",
+                    contacted: false,
+                    serious: false
+                },
+                {
+                    id: 2,
+                    name: "عيسى",
+                    phone: "+966539717602",
+                    email: "issaljadali@gmail.com",
+                    service: "cars",
+                    budget: "500-1000",
+                    date: "2025-11-13",
+                    duration: "4 ساعات",
+                    location: "جدة",
+                    status: "قيد الانتظار",
+                    paymentMethod: "تحويل",
+                    notes: "لا توجد ملاحظات",
+                    createdAt: "2025-09-22",
+                    contacted: false,
+                    serious: false
+                }
+            ];
+            
+            // إذا لم تكن هناك بيانات محفوظة، استخدم البيانات الأولية
+            if (!localStorage.getItem('issaBookings')) {
+                localStorage.setItem('issaBookings', JSON.stringify(initialData));
+            }
+        }
+
+        function loadDashboard() {
+            loadInitialData();
+            allBookings = JSON.parse(localStorage.getItem('issaBookings')) || [];
+            updateStats();
+            filterBookings(currentFilter);
+        }
+
+        function updateStats() {
+            const total = allBookings.length;
+            const pending = allBookings.filter(b => !b.contacted).length;
+            const contacted = allBookings.filter(b => b.contacted).length;
+            const serious = allBookings.filter(b => b.serious).length;
+
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('pendingBookings').textContent = pending;
+            document.getElementById('contactedBookings').textContent = contacted;
+            document.getElementById('seriousClients').textContent = serious;
+        }
+
+        function filterBookings(filter) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let filteredBookings = allBookings;
+            
+            switch(filter) {
+                case 'pending':
+                    filteredBookings = allBookings.filter(b => !b.contacted);
+                    break;
+                case 'contacted':
+                    filteredBookings = allBookings.filter(b => b.contacted);
+                    break;
+                case 'serious':
+                    filteredBookings = allBookings.filter(b => b.serious);
+                    break;
+                case 'notSerious':
+                    filteredBookings = allBookings.filter(b => !b.serious);
+                    break;
+            }
+
+            displayBookings(filteredBookings);
+        }
+
+        function displayBookings(bookings) {
+            const bookingsList = document.getElementById('bookingsList');
+            bookingsList.innerHTML = bookings.map(booking => `
+                <tr>
+                    <td>${booking.id}</td>
+                    <td>${booking.name}</td>
+                    <td>${booking.phone}</td>
+                    <td>${booking.email || 'لا يوجد'}</td>
+                    <td>${getServiceName(booking.service)}</td>
+                    <td>${booking.budget}</td>
+                    <td>${booking.date}</td>
+                    <td>${booking.duration || 'غير محدد'}</td>
+                    <td>${booking.location || 'غير محدد'}</td>
+                    <td class="status-${booking.contacted ? 'contacted' : 'pending'}">
+                        ${booking.contacted ? 'تم التواصل' : 'قيد الانتظار'}
+                    </td>
+                    <td>${booking.paymentMethod || 'غير محدد'}</td>
+                    <td>${booking.notes || 'لا توجد ملاحظات'}</td>
+                    <td>
+                        <button class="action-btn contacted-btn" onclick="toggleContacted(${booking.id})">
+                            ${booking.contacted ? '✓' : '✉️'}
+                        </button>
+                        <button class="action-btn ${booking.serious ? 'not-serious-btn' : 'serious-btn'}" onclick="toggleSerious(${booking.id})">
+                            ${booking.serious ? 'غير جاد' : 'جاد'}
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteBooking(${booking.id})">🗑️</button>
+                        <button class="action-btn" onclick="callClient('${booking.phone}')">📞</button>
+                        <button class="action-btn" onclick="whatsappClient('${booking.phone}')">💬</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getServiceName(service) {
+            const services = {
+                'cars': 'تصوير السيارات',
+                'realestate': 'تصوير العقارات',
+                'events': 'تصوير المناسبات'
+            };
+            return services[service] || service;
+        }
+
+        function toggleContacted(bookingId) {
+            const booking = allBookings.find(b => b.id === bookingId);
+            if (booking) {
+                booking.contacted = !booking.contacted;
+                localStorage.setItem('issaBookings', JSON.stringify(allBookings));
+                filterBookings(currentFilter);
+                updateStats();
+            }
+        }
+
+        function toggleSerious(bookingId) {
+            const booking = allBookings.find(b => b.id === bookingId);
+            if (booking) {
+                booking.serious = !booking.serious;
+                localStorage.setItem('issaBookings', JSON.stringify(allBookings));
+                filterBookings(currentFilter);
+                updateStats();
+            }
+        }
+
+        function deleteBooking(bookingId) {
+            if (confirm('هل أنت متأكد من حذف هذا الحجز؟')) {
+                allBookings = allBookings.filter(b => b.id !== bookingId);
+                localStorage.setItem('issaBookings', JSON.stringify(allBookings));
+                filterBookings(currentFilter);
+                updateStats();
+            }
+        }
+
+        function callClient(phone) {
+            window.open(`tel:${phone}`, '_self');
+        }
+
+        function whatsappClient(phone) {
+            window.open(`https://wa.me/${phone}`, '_blank');
+        }
+
+        function exportData(format) {
+            const bookings = JSON.parse(localStorage.getItem('issaBookings')) || [];
+            
+            // إضافة BOM لضمان عرض العربية بشكل صحيح
+            const BOM = "\uFEFF";
+            
+            let content, filename, instructions;
+            
+            if (format === 'txt') {
+                // استخدام TAB كفاصل (أكثر توافقاً)
+                content = BOM + "رقم الحجز\tالاسم\tالهاتف\tالبريد\tالخدمة\tالميزانية\tالتاريخ\tالمدة\tالموقع\tالحالة\tطريقة الدفع\tملاحظات\tتاريخ الإنشاء\n";
+                
+                bookings.forEach(booking => {
+                    const row = [
+                        booking.id,
+                        booking.name,
+                        booking.phone,
+                        booking.email || 'لا يوجد',
+                        getServiceName(booking.service),
+                        booking.budget || 'غير محدد',
+                        booking.date,
+                        booking.duration || 'غير محدد',
+                        booking.location || 'غير محدد',
+                        booking.contacted ? 'تم التواصل' : 'قيد الانتظار',
+                        booking.paymentMethod || 'غير محدد',
+                        booking.notes || 'لا توجد ملاحظات',
+                        booking.createdAt
+                    ].join('\t');
+                    
+                    content += row + '\n';
+                });
+                
+                filename = 'حجوزات-المصور-عيسى.txt';
+                instructions = "للفتح في Excel: Data → From Text/CSV → اختر UTF-8 → Delimiter: Tab";
+                
+            } else if (format === 'excel') {
+                // إضافة إرشادات في بداية الملف
+                content = BOM + "إرشادات الفتح في Excel:\n";
+                content += "1. افتح Excel جديد\n";
+                content += "2. اذهب إلى Data → Get Data → From File → From Text/CSV\n";
+                content += "3. اختر هذا الملف\n";
+                content += "4. Encoding: اختر UTF-8\n";
+                content += "5. Delimiter: اختر Comma\n";
+                content += "6. انقر على Load\n\n";
+                content += "رقم الحجز,الاسم,الهاتف,البريد,الخدمة,الميزانية,التاريخ,المدة,الموقع,الحالة,طريقة الدفع,ملاحظات,تاريخ الإنشاء\n";
+                
+                bookings.forEach(booking => {
+                    const row = [
+                        booking.id,
+                        `"${booking.name}"`,
+                        `"${booking.phone}"`,
+                        `"${booking.email || 'لا يوجد'}"`,
+                        `"${getServiceName(booking.service)}"`,
+                        `"${booking.budget || 'غير محدد'}"`,
+                        `"${booking.date}"`,
+                        `"${booking.duration || 'غير محدد'}"`,
+                        `"${booking.location || 'غير محدد'}"`,
+                        `"${booking.contacted ? 'تم التواصل' : 'قيد الانتظار'}"`,
+                        `"${booking.paymentMethod || 'غير محدد'}"`,
+                        `"${booking.notes || 'لا توجد ملاحظات'}"`,
+                        `"${booking.createdAt}"`
+                    ].join(',');
+                    
+                    content += row + '\n';
+                });
+                
+                filename = 'حجوزات-المصور-عيسى-مع-إرشادات.csv';
+                
+            } else {
+                // CSV عادي
+                content = BOM + "رقم الحجز,الاسم,الهاتف,البريد,الخدمة,الميزانية,التاريخ,المدة,الموقع,الحالة,طريقة الدفع,ملاحظات,تاريخ الإنشاء\n";
+                
+                bookings.forEach(booking => {
+                    const row = [
+                        booking.id,
+                        `"${booking.name}"`,
+                        `"${booking.phone}"`,
+                        `"${booking.email || 'لا يوجد'}"`,
+                        `"${getServiceName(booking.service)}"`,
+                        `"${booking.budget || 'غير محدد'}"`,
+                        `"${booking.date}"`,
+                        `"${booking.duration || 'غير محدد'}"`,
+                        `"${booking.location || 'غير محدد'}"`,
+                        `"${booking.contacted ? 'تم التواصل' : 'قيد الانتظار'}"`,
+                        `"${booking.paymentMethod || 'غير محدد'}"`,
+                        `"${booking.notes || 'لا توجد ملاحظات'}"`,
+                        `"${booking.createdAt}"`
+                    ].join(',');
+                    
+                    content += row + '\n';
+                });
+                
+                filename = 'حجوزات-المصور-عيسى.csv';
+                instructions = "للفتح في Excel: Data → From Text/CSV → اختر UTF-8";
+            }
+            
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const link = document.createElement('a');
+            
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                // لـ Internet Explorer
+                window.navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // للمتصفحات الحديثة
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', filename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+            
+            if (instructions) {
+                showNotification('تم التصدير! ' + instructions, 5000);
+            } else {
+                showNotification('تم تصدير البيانات بنجاح!');
+            }
+            
+            // إخفاء خيارات التصدير
+            document.getElementById('exportOptions').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

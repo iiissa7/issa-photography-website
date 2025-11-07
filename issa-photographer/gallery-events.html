@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="gallery.events.title">معرض المناسبات | المصور عيسى</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gallery-container {
+            padding: 120px 2rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .gallery-header h1 {
+            color: #D4AF37;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-header p {
+            color: #cccccc;
+            font-size: 1.2rem;
+        }
+        
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .photo-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333333;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+            border-color: #D4AF37;
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-info {
+            padding: 1.5rem;
+        }
+        
+        .photo-info h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .photo-info p {
+            color: #cccccc;
+        }
+        
+        .back-btn-improved {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .back-btn-improved:hover {
+            background: #0a0a0a;
+            color: #d4af37;
+            border-color: #d4af37;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .gallery-cta {
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+            margin-top: 3rem;
+        }
+
+        .gallery-cta h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-cta p {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1001;
+            background: rgba(212, 175, 55, 0.9);
+            color: #0a0a0a;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            font-family: 'El Messiri', sans-serif;
+        }
+
+        .language-toggle:hover {
+            background: #ffffff;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                padding: 100px 1rem 1rem 1rem;
+            }
+            
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="languageToggle" class="language-toggle">🌐 EN</button>
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2 data-lang="nav.title">المصور عيسى</h2>
+            </div>
+            <div class="nav-cta">
+                <a href="index.html" class="cta-button">
+                    <i class="fas fa-home"></i>
+                    <span data-lang="nav.home">الرئيسية</span>
+                </a>
+                <a href="booking.html" class="cta-button">
+                    <i class="fas fa-calendar-check"></i>
+                    <span data-lang="nav.book">احجز الآن</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="gallery-container">
+        <a href="index.html" class="back-btn-improved">
+            <i class="fas fa-arrow-right"></i>
+            <span data-lang="nav.home">العودة للرئيسية</span>
+        </a>
+        
+        <div class="gallery-header">
+            <h1 data-lang="gallery.events.title">معرض تصوير المناسبات</h1>
+            <p data-lang="gallery.events.subtitle">توثيق لحظات السعادة والاحتفاء في المناسبات الخاصة</p>
+        </div>
+
+        <div class="photos-grid">
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg" alt="حفل زفاف">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo1.title">حفل زفاف ملكي</h3>
+                    <p data-lang="gallery.events.photo1.desc">توثيق كامل للحفل والكواليس</p>
+                </div>
+            </div>
+            
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/977539/pexels-photo-977539.jpeg" alt="حفل تخرج">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo2.title">حفل تخرج</h3>
+                    <p data-lang="gallery.events.photo2.desc">لحظات تخرج لا تُنسى</p>
+                </div>
+            </div>
+            
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg" alt="حفل تكريم">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo3.title">حفل تكريم</h3>
+                    <p data-lang="gallery.events.photo3.desc">توثيق لحظات التكريم والتقدير</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/3171815/pexels-photo-3171815.jpeg" alt="حفل خطوبة">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo4.title">حفل خطوبة</h3>
+                    <p data-lang="gallery.events.photo4.desc">توثيق بداية قصة حب</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/1181391/pexels-photo-1181391.jpeg" alt="حفلة عيد ميلاد">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo5.title">حفلة عيد ميلاد</h3>
+                    <p data-lang="gallery.events.photo5.desc">لحظات فرح واحتفال</p>
+                </div>
+            </div>
+
+            <div class="photo-card">
+                <img src="https://images.pexels.com/photos/1266032/pexels-photo-1266032.jpeg" alt="مناسبة عائلية">
+                <div class="photo-info">
+                    <h3 data-lang="gallery.events.photo6.title">مناسبة عائلية</h3>
+                    <p data-lang="gallery.events.photo6.desc">توثيق لقاءات العائلة</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-cta">
+            <h3 data-lang="gallery.cta.title">تخطط لمناسبة خاصة؟</h3>
+            <p data-lang="gallery.cta.subtitle">دعنا نخلد ذكريات مناسبتك بصور احترافية تليق بلحظاتك</p>
+            <a href="booking.html" class="cta-button" style="padding: 1.2rem 2.5rem; font-size: 1.2rem;">
+                <i class="fas fa-camera"></i>
+                <span data-lang="gallery.cta.book">احجز جلسة التصوير</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        class GalleryLanguageManager {
+            constructor() {
+                this.currentLanguage = localStorage.getItem('issaLanguage') || 'ar';
+                this.translations = {
+                    ar: {
+                        'nav.title': 'المصور عيسى',
+                        'nav.home': 'الرئيسية',
+                        'nav.book': 'احجز الآن',
+                        'gallery.events.title': 'معرض تصوير المناسبات',
+                        'gallery.events.subtitle': 'توثيق لحظات السعادة والاحتفاء في المناسبات الخاصة',
+                        'gallery.events.photo1.title': 'حفل زفاف ملكي',
+                        'gallery.events.photo1.desc': 'توثيق كامل للحفل والكواليس',
+                        'gallery.events.photo2.title': 'حفل تخرج',
+                        'gallery.events.photo2.desc': 'لحظات تخرج لا تُنسى',
+                        'gallery.events.photo3.title': 'حفل تكريم',
+                        'gallery.events.photo3.desc': 'توثيق لحظات التكريم والتقدير',
+                        'gallery.events.photo4.title': 'حفل خطوبة',
+                        'gallery.events.photo4.desc': 'توثيق بداية قصة حب',
+                        'gallery.events.photo5.title': 'حفلة عيد ميلاد',
+                        'gallery.events.photo5.desc': 'لحظات فرح واحتفال',
+                        'gallery.events.photo6.title': 'مناسبة عائلية',
+                        'gallery.events.photo6.desc': 'توثيق لقاءات العائلة',
+                        'gallery.cta.title': 'تخطط لمناسبة خاصة؟',
+                        'gallery.cta.subtitle': 'دعنا نخلد ذكريات مناسبتك بصور احترافية تليق بلحظاتك',
+                        'gallery.cta.book': 'احجز جلسة التصوير'
+                    },
+                    en: {
+                        'nav.title': 'Photographer Issa',
+                        'nav.home': 'Home',
+                        'nav.book': 'Book Now',
+                        'gallery.events.title': 'Event Photography Gallery',
+                        'gallery.events.subtitle': 'Documenting moments of happiness and celebration in special occasions',
+                        'gallery.events.photo1.title': 'Royal Wedding',
+                        'gallery.events.photo1.desc': 'Complete documentation of the ceremony and behind the scenes',
+                        'gallery.events.photo2.title': 'Graduation Ceremony',
+                        'gallery.events.photo2.desc': 'Unforgettable graduation moments',
+                        'gallery.events.photo3.title': 'Award Ceremony',
+                        'gallery.events.photo3.desc': 'Documenting moments of honor and appreciation',
+                        'gallery.events.photo4.title': 'Engagement Party',
+                        'gallery.events.photo4.desc': 'Documenting the beginning of a love story',
+                        'gallery.events.photo5.title': 'Birthday Party',
+                        'gallery.events.photo5.desc': 'Moments of joy and celebration',
+                        'gallery.events.photo6.title': 'Family Gathering',
+                        'gallery.events.photo6.desc': 'Documenting family meetings',
+                        'gallery.cta.title': 'Planning a special event?',
+                        'gallery.cta.subtitle': 'Let us immortalize your event memories with professional photos worthy of your moments',
+                        'gallery.cta.book': 'Book Photo Session'
+                    }
+                };
+                this.init();
+            }
+
+            init() {
+                this.loadLanguage();
+                document.getElementById('languageToggle').addEventListener('click', () => this.toggleLanguage());
+            }
+
+            loadLanguage() {
+                const elements = document.querySelectorAll('[data-lang]');
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-lang');
+                    if (this.translations[this.currentLanguage][key]) {
+                        element.textContent = this.translations[this.currentLanguage][key];
+                    }
+                });
+
+                document.documentElement.dir = this.currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = this.currentLanguage;
+                
+                document.getElementById('languageToggle').textContent = 
+                    this.currentLanguage === 'ar' ? '🌐 EN' : '🌐 AR';
+            }
+
+            toggleLanguage() {
+                this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('issaLanguage', this.currentLanguage);
+                this.loadLanguage();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new GalleryLanguageManager();
+        });
+    </script>
+</body>
+</html>
